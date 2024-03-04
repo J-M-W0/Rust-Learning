@@ -148,6 +148,52 @@
     }
 ```
 
+> Example with destructuring:
+```rs
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+
+    fn main() {
+        let point = Point { x: 0, y: 7 };
+
+        match point {
+            Point { x,    y: 0 } => println!("on the x at {}", x),
+            Point { x: 0, y    } => println!("on the y at {}", y),
+            Point { x,    y    } => println!("on the (x, y) at ({x}, {y})"),
+        }
+    }
+```
+
+> Example with guards:
+```rs
+    /*
+        In the provided folowing code snippet, 
+        ownership is not a central concern because it deals only with an integer value, 
+        which implements the "Copy" trait. 
+
+        Types that implement the Copy trait, like integers, 
+        have their values copied when they are passed around, rather than moved, 
+        which means there's no transfer of ownership as per Rust's ownership rules.
+    */
+    fn main() {
+        let number = 4;
+
+        match number {
+            n if n < 0 => println!("negative"),
+            n if n > 0 => println!("positive"),
+            _ => println!("zero"),
+        }
+
+        match number {
+            1 | 2 => println!("one or two"),
+            3 => println!("three"),
+            other => println!("{other:?}"),
+        }
+    }
+```
+
 
 # *enum* Enumeration
 
@@ -549,6 +595,19 @@
         println!("age = {age:?}");
     }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
