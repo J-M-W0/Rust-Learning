@@ -346,6 +346,43 @@
     }
 ```
 
+> Example - Comparison:
+```rs
+    // If a struct implements the "Copy" trait, 
+    // then assigning one variable to another simply copies the value,
+    // not transferring the ownership.
+    #[derive(Clone, Copy)]
+    struct MyStruct {
+        x: i32,
+    }
+
+    let a = MyStruct { x: 5 };
+    let b = a; // `a` is copied to `b`, `a` remains valid.
+    
+    /* ------------------------------- */
+
+    struct MyStruct {
+        x: i32,
+    }
+
+    let a = MyStruct { x: 5 };
+    let b = a; // Ownership of `a` is moved to `b`. `a` can no longer be used.
+```
+
+
+# *Clone* and *Copy* traits
+
+| **Clone**: 
+`   `|| the **Clone** trait allows for explicit duplication of an object. 
+`   `|| When a type implements **Clone**, you can create a new instance of that type 
+`       `with the same data as another instance by calling the *clone( )* method.
+
+| **Copy**:
+`   `|| the **Copy** trait is a marker trait that indicates a type's values can be duplicated 
+`       `simply by copying bits (a shallow copy).
+`   `|| for a type to implement **Copy**, it must also implement **Clone**. 
+`   `|| this requirement is because **Copy** is a subset of **Clone**.
+
 
 # Vector
 
